@@ -1,7 +1,7 @@
-# level2-angular-dev
-**Mid-Level Angular Developer Training and Exam Notes - [CertificatesDev](https://certificates.dev/angular#top)**
+# Mid-Level Angular Developer Training and Exam Notes
+### From [CertificatesDev](https://certificates.dev/angular#top)
 
-- Chapter 1: Basics of Angular
+## Chapter 1: Basics of Angular
   - What’s the difference between Angular JS and Angular?
   - The Angular CLI
   - Conventions and Style Guide
@@ -9,7 +9,7 @@
   - Features of the framework
   - Angular Modules and Standalone
   - Pop Quiz!
-- Chapter 2: Angular Components
+## Chapter 2: Angular Components
   - Component Selector and Decorators
   - Expressions and Data Bindings
   - Control Flow with Blocks
@@ -20,39 +20,39 @@
   - Other Important Topics
   - Pop Quiz!
   - Display a List of Components
-- Chapter 3: JavaScript and TypeScript
+## Chapter 3: JavaScript and TypeScript
   - JavaScript
   - TypeScript
   - Pop Quiz!
-- Chapter 4: Directives and Pipes
+## Chapter 4: Directives and Pipes
   - Basics of directives
   - Custom Directives and Advanced Usage
   - Highlight a Specific Movie in the List on Mouse Over
   - Pipes
   - Create Pipes to Improve Budget and Duration Formatting
   - Pop Quiz!
-- Chapter 5: Services and Dependency Injection
+## Chapter 5: Services and Dependency Injection
   - Basics of Dependency Injection
   - Characteristics of Services
   - Pop Quiz!
   - Use a Service to Manage Favorite Movies
-- Chapter 6: Angular Router
+## Chapter 6: Angular Router
   - Basics of Routing
   - Access Control with the Router
   - Lazy Loading
   - Pop Quiz!
   - Use the Router to Display Movie Details
-- Chapter 7: RxJs Observables
+## Chapter 7: RxJs Observables
   - Basics of RxJs
   - Important Operators
   - Pop Quiz!
   - Use RxJs Observables to Display Data
-- Chapter 8: Angular Forms
+## Chapter 8: Angular Forms
   - Basics of Angular Forms
   - Reactive and Template-Driven Forms
   - Pop Quiz!
   - Add Filters to our Movies App
-- Chapter 9: Challenge roundup
+## Chapter 9: Challenge roundup
   - Car Configurator: Model and Color
   - Car Configurator: Config Options
   - Car Configurator: Summary and Price
