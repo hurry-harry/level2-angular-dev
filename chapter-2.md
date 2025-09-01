@@ -71,3 +71,125 @@
       ```
       - `CustomCard` queries for a `CustomCardHeader` component and uses the result in the call to `computed()`
         - `undefined` is returned if no result is found. Can happen if the element is blocked by an `@if`
+    - Multiple results are also possible via `viewChildren()` returning a signal with an Array of the query results.
+  - If the element you want is nested inside the template of the component, use content queries - `contentChild()`
+    - ```
+        @Component({
+          selector: 'custom-toggle',
+          /*...*/
+        })
+        export class CustomToggle {
+          text: string;
+        }
+        @Component({
+          selector: 'custom-expando',
+          /*...*/
+        })
+        export class CustomExpando {
+          toggle = contentChild(CustomToggle);
+          toggleText = computed(() => this.toggle()?.text);
+        }
+        @Component({ 
+          /* ... */
+          // CustomToggle is used inside CustomExpando as content.  
+          template: `
+            <custom-expando>
+              <custom-toggle>Show</custom-toggle>
+            </custom-expando>
+          `
+        })
+        export class UserProfile { }
+      ```
+    - Returns `undefined` if no result is found.
+    - Use `contentChildren()` for multiple results
+  - Use `required` so that Angular will report an error if no result is found
+  - The locator is always the first query parameter of the query
+    - ```
+      <button #save>Save</button>
+      <button #cancel>Cancel</button>
+      --
+      saveButton = viewChild<ElementRef<HTMLButtonElement>>('save');
+      ```
+    - It will return the first matching element in cases where there are multiple matches
+  - For `viewChild/ren()` and `contentChild()`, children templates are accessible by default. For `contentChildren()` use the `descendants: true` parameter to have the same results.
+
+### Expressions and Data Bindings
+- [Binding links the component template and the data so that the template remains updated](https://angular.dev/guide/templates/binding)
+- Binding static and dynamic text interpolation
+  - Static
+    - ```
+      <p>Your color preference is {{ theme }}.</p>
+      --
+      theme = 'dark';
+      ```
+  - Dynamic or bindings that will change should read values via `signals`
+    - ```
+      <p>Your color preference is {{ theme() }}.</p>
+      --
+      theme = signal('dark');
+      ```
+- Binding to dynamic properties and attributes
+  - ```
+    <button [disabled]="isFormValid()">Save</button>
+    <my-listbox [value]="mySelection()" />
+    <img [ngSrc]="profilePhotoUrl()" alt="The current user's profile photo">
+    <ul [attr.role]="listRole()"> <!-- use the attr prefix for binding to an attribute -->
+    ```
+  - Text interpolation in properties and attributes
+    - ```
+      <img src="profile-photo.jpg" alt="Profile photo of {{ firstName() }}" >
+      <button attr.aria-label="Save changes to {{ objectType() }}"> <!-- use the attr prefix for binding to an attribute -->
+      ```
+- Binding to CSS class and style properties
+  - Classes
+    - Create a binding that can add or remove a class based on a truthy or falsy conditional.
+      - `<ul [class.expanded]="isExpanded()">`
+      - ```
+        @Component({
+          template: `
+            <ul [class]="listClasses"> ... </ul>
+            <section [class]="sectionClasses()"> ... </section>
+            <button [class]="buttonClasses()"> ... </button>
+          `,
+          ...
+        })
+        export class UserProfile {
+          listClasses = 'full-width outlined';
+          sectionClasses = signal(['expandable', 'elevated']);
+          buttonClasses = ({
+            highlighted: true,
+            embiggened: false,
+          });
+        }
+        -------------------- Renders into --------------------------
+        <ul class="full-width outlined"> ... </ul>
+        <section class="expandable elevated"> ... </section>
+        <button class="highlighted"> ... </button>
+        ```
+  - Properties
+    - Same case as with classes
+      - `<section [style.display]="isExpanded() ? 'block' : 'none'">`
+      - Setting specific units and values is also possible
+        - `<section [style.height.px]="sectionHeightInPixels()">`
+      - You can set multiple styles in one binding
+        - ```
+          @Component({
+            template: `
+              <ul [style]="listStyles()"> ... </ul>
+              <section [style]="sectionStyles()"> ... </section>
+            `,
+            ...
+          })
+          export class UserProfile {
+            listStyles = signal('display: flex; padding: 8px');
+            sectionStyles = signal({
+              border: '1px solid black',
+              'font-weight': 'bold',
+            });
+          }
+          -------------------- Renders into --------------------------
+          <ul style="display: flex; padding: 8px"> ... </ul>
+          <section style="border: 1px solid black; font-weight: bold"> ... </section>
+          ```
+- [Template Reference Variables](https://www.angulartraining.com/daily-newsletter/template-reference-variables/)
+  - Makes use of the hashtag syntax
