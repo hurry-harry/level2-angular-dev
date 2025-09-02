@@ -1,4 +1,4 @@
-# Chapter 2: Angular Components
+# Chapter 2.1: Angular Components - Selectors and Decorators - Expressions and Bindings - Control Flow
 ### Component Selector and Decorators
 - Angular uses selectors to know when to render a specific component
 - [Choosing a selector and using prefixes](https://angular.dev/guide/components/selectors#choosing-a-selector)
@@ -193,3 +193,112 @@
           ```
 - [Template Reference Variables](https://www.angulartraining.com/daily-newsletter/template-reference-variables/)
   - Makes use of the hashtag syntax
+  - Used to refer to elements and get their values. Also works with directives and components
+  - [For a more detailed documentation](https://blog.angulartraining.com/tutorial-the-magic-of-template-reference-variables-3183f0a0d9d1)
+  - ```
+    <input #phone placeholder="phone number" />
+    <button (click)="callPhone(phone.value)">Call</button>
+    ------------- 
+    phone refers to #phone and gets the value of the input element
+    ```
+  - ```
+    <app-hello #hello ></app-hello>
+    -------------
+    In here, #hello can be used to access all public properties and methods of the HelloComponent
+    ```
+
+### Control Flow with Blocks
+- [Introduced in Angular 17, and refined in Angular 18.](https://blog.angulartraining.com/angular-17-new-control-flow-syntax-4fbec4772d04)
+  - Serves as an alternative to the old directives. Helps to improve readability of HTML templates.
+  - Previous syntax used directives `*ngIf="condition; else elseBlock -> <ng-template #elseBlock>`
+  - The old style is still usable and is not deprecated. You can use both at the same time
+  - `ng g @angular/core:control-flow` to automatically replace old syntax
+  - With new style, there was up to 90% performance improvement and an average of 30% speed improvement
+- [`@let` (introduced in Angular 18.1)](https://www.angulartraining.com/daily-newsletter/let-for-local-variables-in-angular-views/)
+  - Used for creating local variables to use in the template
+    - `@let a = 'Hello Nicole' -> {{a}}`
+    - They are read-only and scoped only to the nearest block, they are not reachable outside it
+    - Can be used to shorten and make passages more readable with reusability
+      - ```
+        {{user.location.address.country}}
+        {{user.location.address.city}}
+        -------------- Into --------------
+        @let address = user.location.address
+        {{address.country}}
+        {{address.city}}
+        ```
+    - Can be used to lessen observable subscriptions when using the `async` pipe
+      - ```
+        -------------- From --------------
+        {{(user$ | async)?.location?.address?.country}}
+        {{(user$ | async)?.location?.address?.city}}
+        -------------- Into --------------
+        @let user = user$ | async;
+        @if (user) {
+          @let address = user.location.address;
+          {{address.country}}
+          {{address.city}}
+        }
+        ```
+- [New `@if` block syntax](https://angular.dev/guide/templates/control-flow#if-block-conditionals)
+  - ```
+    <div>
+      @if (a > b) {
+        {{a}} is greater than {{b}}
+      } @else {
+        Content to render when the condition is false.
+      }
+    </div>
+    ```
+  - Can also handle `@else if(something)`
+  - Can also reference the value/result of the conditional
+    - ```
+      @if (user.location; as location) {
+        {{location.address}}
+      }
+- [New `@for` block syntax](https://angular.dev/guide/templates/control-flow#repeat-content-with-the-for-block)
+  - ```
+    @for (item of items; track item.id) {
+      {{ item.name }}
+    }
+    ```
+  - Iterates through a collection and will repeatedly render the content of the block. Any JavaScript iterable can be used but there are performance optimizations when using `Arrays`
+  - Does not support flow-modifiers like `continue` or `break`
+  - Typically use unique properties for `track`
+    - For static collections, you can also use `$index` to track by their index in the collection
+  - These properties are always available in `@for` blocks, they can also be aliased using `@let`. Assigning an alias means they can be accessed by an inner `@for` block via that alias
+    - `$count` - number of items iterated over in the collection
+    - `$index` - the index of the current item
+    - `$first` - whether the current item is the first item
+    - `$last` - whether the current item is the last item
+    - `$even` - whether the current index is even
+    - `$odd` - whether the current index is odd
+  - Use the `@empty` block to provide a display when there are no items in the collection
+    - ```
+      @for (item of items; track item.name) {
+        <li> {{ item.name }}</li>
+      } @empty {
+        <li aria-hidden="true"> There are no items. </li>
+      }
+      ```
+- [New `@switch` block syntax](https://angular.dev/guide/templates/control-flow#conditionally-display-content-with-the-switch-block)
+  - Comparison is done using `===`
+  - No need for `return` or `break`
+  - If no `@case` matches and there's no `@default`, nothing will be rendered
+  - ```
+    @switch (userPermissions) {
+      @case ('admin') {
+        <app-admin-dashboard />
+      }
+      @case ('reviewer') {
+        <app-reviewer-dashboard />
+      }
+      @case ('editor') {
+        <app-editor-dashboard />
+      }
+      @default {
+        <app-viewer-dashboard />
+      }
+    }
+    ```
+### Quiz 3
