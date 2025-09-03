@@ -1,5 +1,5 @@
 # Chapter 2 - Challenge: Create a Component Driven by Inputs
-Associated files are located in the files folder under `Chapter2-2`
+Associated files are located in the `files/Chapter-2-2` folder
 ## Create a component for movie items that receive `Movie` information from inputs.
 ### Requirements
 - Add a required input of type `Movie`
