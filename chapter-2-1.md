@@ -10,12 +10,19 @@
     - This lets the consumer use the standard APIs/features of the element immediately.
   - We can make the selector apply to all specific elements, [eg. buttons](https://www.angulartraining.com/daily-newsletter/the-power-of-angular-selectors/).
     - Attributes can also be passed if we don't want it to be applied to a specific button.
-- [Working with `inputs` to pass data](https://angular.dev/guide/components/inputs)
+- [Working with `inputs` to pass data](https://angular.dev/guide/components/inputs) (need to refine this)
   - New, and recommended, style is signals-based but the old style of using the `@Input()` decorator is still fully supported
     - Signals-based
       - ```
-        value = input<number>(50)`
         <custom-slider [value]="50" />
+        value = input<number>(50)
+        -------------
+
+        -- Parent
+        <app-movie-item [input]="movie"/>
+        -- Child
+        <h4>{{input().title}}</h4>
+        input = model.required<Movie>();
         ```
       - ``label = computed(() => `The slider's value is ${this.value()}`)``
       - `value = input.required<number>()`
