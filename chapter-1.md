@@ -1,12 +1,12 @@
 # Chapter 1: The Basics of Angular
 Contents:
-- [What's the difference between Angular JS and Angular?](https://github.com/hurry-harry/level2-angular-dev/main/chapter-1.md#whats-the-difference-between-angular-js-and-angular)
-- [The Angular CLI](https://github.com/hurry-harry/level2-angular-dev/main/chapter-1.md#the-angular-cli)
-- [Conventions and Style Guide](https://github.com/hurry-harry/level2-angular-dev/main/chapter-1.md#conventions-and-style-guide)
-- [Quiz 1](https://github.com/hurry-harry/level2-angular-dev/main/chapter-1.md#quiz-1)
-- [Features of the Framework](https://github.com/hurry-harry/level2-angular-dev/main/chapter-1.md#features-of-the-framework)
-- [Angular Modules and Standalone](https://github.com/hurry-harry/level2-angular-dev/main/chapter-1.md#angular-modules-and-standalone)
-- [Quiz 2](https://github.com/hurry-harry/level2-angular-dev/main/chapter-1.md#quiz-2)
+- [What's the difference between Angular JS and Angular?](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-1.md#whats-the-difference-between-angular-js-and-angular)
+- [The Angular CLI](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-1.md#the-angular-cli)
+- [Conventions and Style Guide](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-1.md#conventions-and-style-guide)
+- [Quiz 1](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-1.md#quiz-1)
+- [Features of the Framework](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-1.md#features-of-the-framework)
+- [Angular Modules and Standalone](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-1.md#angular-modules-and-standalone)
+- [Quiz 2](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-1.md#quiz-2)
   
 ## What’s the difference between Angular JS and Angular?
 - AngularJS is version 1 of the framework. Not supported anymore since January 2022.
