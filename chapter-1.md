@@ -1,20 +1,29 @@
 # Chapter 1: The Basics of Angular
-### What’s the difference between Angular JS and Angular?
+Contents:
+- [What's the difference between Angular JS and Angular?](https://github.com/hurry-harry/level2-angular-dev/main/chapter-1.md#whats-the-difference-between-angular-js-and-angular)
+- [The Angular CLI](https://github.com/hurry-harry/level2-angular-dev/main/chapter-1.md#the-angular-cli)
+- [Conventions and Style Guide](https://github.com/hurry-harry/level2-angular-dev/main/chapter-1.md#conventions-and-style-guide)
+- [Quiz 1](https://github.com/hurry-harry/level2-angular-dev/main/chapter-1.md#quiz-1)
+- [Features of the Framework](https://github.com/hurry-harry/level2-angular-dev/main/chapter-1.md#features-of-the-framework)
+- [Angular Modules and Standalone](https://github.com/hurry-harry/level2-angular-dev/main/chapter-1.md#angular-modules-and-standalone)
+- [Quiz 2](https://github.com/hurry-harry/level2-angular-dev/main/chapter-1.md#quiz-2)
+  
+## What’s the difference between Angular JS and Angular?
 - AngularJS is version 1 of the framework. Not supported anymore since January 2022.
 - Angular is the modern iteration of the framework. First as Angular 2 in 2016 and now 18/19 in 2024.
 
-### The Angular CLI
+## The Angular CLI
 - The Command Line Interface (CLI) to generate, compile, build, and deploy Angular projects.
   - [Reference](https://angular.dev/cli) for sample commands.
   - [Full Document Reference](https://angular.dev/tools/cli).
 - You can use [Stackblitz](https://stackblitz.com/) as an online sandbox tool for Angular projects.
 
-### Conventions and Style Guide
+## Conventions and Style Guide
 - The Angular Style Guid can be used for info on best practices and organization for code files and folders.
 - Auto generated items from using the Angular CLI will automatically use the recommended naming conventions.
 - [Angular Style Guide](https://angular.dev/style-guide)
 
-### Quiz 1
+## Quiz 1
 - Which CLI command should we run to compile and serve our project locally in development mode?
   1. ng deploy
   2. ng development
@@ -36,7 +45,7 @@
   3. ng test
   4. ng fix
 
-### Features of the Framework
+## Features of the Framework
 - [What is Angular?](https://angular.dev/overview)
   - Component-based architecture with dependency injection for modular, testable code.
   - Signals-based reactivity with compile-time optimizations for fast state updates.
@@ -56,7 +65,7 @@
   - This makes services the best place to store data that can be shared between multiple different components using BehaviorSubjects or Signals.
   - [BehaviourSubjects vs Signals](https://blog.angulartraining.com/angular-signals-best-practices-around-exposing-signals-5385452150a1)
 
-### Angular Modules and Standalone Components
+## Angular Modules and Standalone Components
 - **NOTE:** Modules will most likely get removed from the Angular framework in the future. Angular 17+ relies on standalone components instead.
 - [What are ngModules?](https://www.angulartraining.com/daily-newsletter/what-you-need-to-know-about-ngmodules/)
   - [Config Options](https://angular.dev/api/core/NgModule)
@@ -71,7 +80,7 @@
   - Better to just import only the exact items we need to keep things leaner.
   - StandaloneComponentsCheatsheet.pdf -> Look for this PDF in the files/chapter1/ folder in this repository
  
-### Quiz 2
+## Quiz 2
 - Which one of these concepts does not exist in the Angular framework?
   1. NgModules
   2. Standalone components
