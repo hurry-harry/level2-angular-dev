@@ -13,8 +13,10 @@
 - [Working with `inputs` to pass data](https://angular.dev/guide/components/inputs)
   - New, and recommended, style is signals-based but the old style of using the `@Input()` decorator is still fully supported
     - Signals-based
-      - `value = input<number>(50)`
-      - `<custom-slider [value]="50" />`
+      - ```
+        value = input<number>(50)`
+        <custom-slider [value]="50" />
+        ```
       - ``label = computed(() => `The slider's value is ${this.value()}`)``
       - `value = input.required<number>()`
       - `input()` also accepts secondary parameters such as `transform` and `alias`. Although avoiding `alias` usage is encouraged.
@@ -23,9 +25,9 @@
         - You can read the value by calling the signal function, including in reactive contexts like computed and effect.
         - **NOTE** that binding passes the volume signal instance and not just the value of the signal.
         - `required` and `alias` also work in model input, but `transform` does not
-      - Model Outputs are automatically created by Angular in the format of `(input name)Change`
-        - Eg. `checked = model(false)` -> and then in the template `(checkedChange)="handler()"`
-        - Change events are emitted whenever new values are written into the model input via `set` or `update`
+        - Model Outputs are automatically created by Angular in the format of `(input name)Change`
+          - Eg. `checked = model(false)` -> and then in the template `(checkedChange)="handler()"`
+          - Change events are emitted whenever new values are written into the model input via `set` or `update`
     - Decorator
       - `@Input() value = 0`
       - `<custom-slider [value]="50" />`
