@@ -1,5 +1,10 @@
 # Chapter 2.1: Angular Components - Selectors and Decorators - Expressions and Bindings - Control Flow
-### Component Selector and Decorators
+Contents:
+- [Component Selector and Decorator](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-1.md#component-selector-and-decorator)
+- [Expressions and Data Bindings](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-1.md#expressions-and-data-bindings)
+- [Control Flow with Blocks](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-1.md#control-flow-with-blocks)
+
+## Component Selector and Decorators
 - Angular uses selectors to know when to render a specific component
 - [Choosing a selector and using prefixes](https://angular.dev/guide/components/selectors#choosing-a-selector)
   - Components should use a custom element name.
@@ -122,7 +127,7 @@
     - It will return the first matching element in cases where there are multiple matches
   - For `viewChild/ren()` and `contentChild()`, children templates are accessible by default. For `contentChildren()` use the `descendants: true` parameter to have the same results.
 
-### Expressions and Data Bindings
+## Expressions and Data Bindings
 - [Binding links the component template and the data so that the template remains updated](https://angular.dev/guide/templates/binding)
 - Binding static and dynamic text interpolation
   - Static
@@ -216,7 +221,7 @@
     In here, #hello can be used to access all public properties and methods of the HelloComponent
     ```
 
-### Control Flow with Blocks
+## Control Flow with Blocks
 - [Introduced in Angular 17, and refined in Angular 18.](https://blog.angulartraining.com/angular-17-new-control-flow-syntax-4fbec4772d04)
   - Serves as an alternative to the old directives. Helps to improve readability of HTML templates.
   - Previous syntax used directives `*ngIf="condition; else elseBlock -> <ng-template #elseBlock>`
@@ -310,7 +315,7 @@
       }
     }
     ```
-### Quiz 3
+## Quiz 3
 - Which `@for` block option is required?
   1. track
   2. $index
