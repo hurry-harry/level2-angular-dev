@@ -302,3 +302,23 @@
     }
     ```
 ### Quiz 3
+- Which `@for` block option is required?
+  1. track
+  2. $index
+  3. trackBy
+  4. count
+- Which of the following options is not a valid Angular selector?
+  1. [header]:not(div)
+  2. app-header
+  3. .header
+  4. ng-header
+- What is the decorator used to pass data to a component?
+  1. @Input()
+  2. @Model()
+  3. @Data()
+  4. @Prop()
+- Which of these HTML template examples would automatically render the latest value of `data` when `data` changes?
+  1. (click)="data"
+  2. [value]="data"
+  3. {data}
+  4. ([ngModel])=”data” 
