@@ -1,6 +1,6 @@
 # Chapter 2 - Challenge: Create a Component Driven by Inputs
-## Create a component for movie items that receive `Movie` information from inputs.
 Associated files are located in the files folder under `Chapter2-2`
+## Create a component for movie items that receive `Movie` information from inputs.
 ### Requirements
 - Add a required input of type `Movie`
   - There's a sample movie in `src/app.component.ts`
@@ -14,5 +14,5 @@ Associated files are located in the files folder under `Chapter2-2`
 - Update `src/app.component.html` to pass the sample movie as an input
 - Ensure the component renders properly
 
-### Sample Output
+## Sample Output
 <img width="817" height="61" alt="image" src="https://github.com/user-attachments/assets/26e84f82-221e-4199-b694-8b1c3c6c5976" />
