@@ -110,3 +110,22 @@ Contents:
   - Cancelling `setInterval()` or `setTimeout()` tasks
  
 ## Other Topics
+
+### [Signal-based equivalents of query decorators](https://www.angulartraining.com/daily-newsletter/viewchild-and-contentchild-for-signal-based-queries/)
+- `viewChild()` - a way to get a reference on an HTML element in the current components template. Giving you access to a child component, and its public properties, within the TypeScript space
+  - ```
+    listComponent: Signal<ListComponent | undefined> = viewChild(ListComponent);
+    this.listComponent().items = "";                                               // Sample usage, accessing the `items` property in ListComponent
+    ```
+- `contentChild()` - looks for an element projected by the parent component into the ng-content element of the current component using [content projection](https://www.angulartraining.com/daily-newsletter/passing-custom-content-to-a-component-with-content-projection/).
+  - Can be thought of as being able to look for an element either directly in the current component's template, but also in the template of any child components in the current template. Like the template of the child projects its contents to the template of the current component.
+  - `infoContent = contentChild<ElementRef>('test');`
+- Can make use of `required` to get rid of undefined values
+  - ```
+    listComponent = viewChild.required(ListComponent);
+    length = computed(() => this.listComponent().items.length);
+    ```
+
+### Signal-based functions for [inputs](https://www.angulartraining.com/daily-newsletter/whats-new-in-angular-17-1/), [outputs](https://angular.dev/api/core/output?tab=usage-notes), and [model](https://www.angulartraining.com/daily-newsletter/model-for-signal-based-2-way-data-bindings/)
+- Inputs
+  - 
