@@ -95,6 +95,7 @@ Contents:
         export class CustomToggle {
           text: string;
         }
+      
         @Component({
           selector: 'custom-expando',
           /*...*/
@@ -103,6 +104,7 @@ Contents:
           toggle = contentChild(CustomToggle);
           toggleText = computed(() => this.toggle()?.text);
         }
+      
         @Component({ 
           /* ... */
           // CustomToggle is used inside CustomExpando as content.  
