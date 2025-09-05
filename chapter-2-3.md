@@ -2,10 +2,11 @@
 Contents:
 - [Signals](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-3.md#signals)
 - [Lifecycle Hooks](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-3.md#lifecycle-hooks)
-- [Other Tips](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-3.md#other-tips)
+- [Other Tips](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-3.md#other-topics)
 - [Quiz 4](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-3.md#quiz-4)
   
-## Signals - A new way to handle data
+## Signals
+- A new way to handle data
 - Easier to learn than RxJs, lightweight, and they enable a new type of change detection
 - Signals are wrappers around values that notifies interested consumers when the value changes
 - Signals can be primitive types or complex data structures
