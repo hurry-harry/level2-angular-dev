@@ -1,4 +1,4 @@
-# Chapter 2.3: Signals - Lifecycle Hooks - Other tips
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/5a72a9aa-4091-4f41-b221-ef5a55932c7b" /><img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/ad3b89e5-84d3-4444-8997-f89cb6e364f6" /># Chapter 2.3: Signals - Lifecycle Hooks - Other tips
 Contents:
 - Signals
 - Lifecycle Hooks
@@ -42,6 +42,74 @@ Contents:
       () => console.log('Count changed', this.count()),
       { allowSignalWrites: true }                        // Default behaviour can be overridden by adding this option
     );
+    ```
+
+### [Signal-based equivalents of query decorators](https://www.angulartraining.com/daily-newsletter/viewchild-and-contentchild-for-signal-based-queries/)
+- `viewChild()` - a way to get a reference on an HTML element in the current components template. Giving you access to a child component, and its public properties, within the TypeScript space
+  - ```
+    listComponent: Signal<ListComponent | undefined> = viewChild(ListComponent);
+    this.listComponent().items = "";                                               // Sample usage, accessing the `items` property in ListComponent
+    ```
+- `contentChild()` - looks for an element projected by the parent component into the ng-content element of the current component using [content projection](https://www.angulartraining.com/daily-newsletter/passing-custom-content-to-a-component-with-content-projection/).
+  - Can be thought of as being able to look for an element either directly in the current component's template, but also in the template of any child components in the current template. Like the template of the child projects its contents to the template of the current component.
+  - `infoContent = contentChild<ElementRef>('test');`
+- Can make use of `required` to get rid of undefined values
+  - ```
+    listComponent = viewChild.required(ListComponent);
+    length = computed(() => this.listComponent().items.length);
+    ```
+
+### Signal-based functions for [inputs](https://www.angulartraining.com/daily-newsletter/whats-new-in-angular-17-1/), [outputs](https://angular.dev/api/core/output?tab=usage-notes), and [model](https://www.angulartraining.com/daily-newsletter/model-for-signal-based-2-way-data-bindings/)
+- Additional info in this section: [input(), output(), viewChild(), contentChild()](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-1.md#component-selector-and-decorators)
+- Inputs: Can be used instead of the `@Input()` decorator.
+  - `name = input<string>('Iris'); -> <p>Hello {{name()}}</p>`
+  - A benefit is being able to use `computed()` instead of `ngOnInit` or `ngOnChanges` for deriving values
+    - ```
+      name = input<string>('Nicole');
+      greeting = computed(() => 'Hello ' + this.name());
+      ```
+  - Also works with `required`
+    - ```
+      firstName = input<string>();          // string | undefined - due to not required and no initial value
+      lastName = input.required<string>();  // string
+      age = input(0);                       // number             - not required BUT it has an initial value
+      ```
+- Outputs: Can be used instead of the `@Output()` decorator
+  - ```
+    // How to create
+    nameChange = output<string>();          // OutputEmitterRef<string>
+    onClick = output();                     // OutputEmitterRef<void>
+
+    // How to emit values to the consumers
+    updateName(newName: string): void {
+      this.nameChange.emit(newName);
+    }
+
+    // How to subscribe for the changes
+    (myOutput)="doSomething($event)"        // template event bindings
+    onClick.subscribe(() => {               // programmatically via .subscribe()
+      // do something
+    });
+    ```
+- Model: Signal-based data binding
+  - Can be one-way or two-way
+  - Also allows to specify that a value is required for a property
+  - ```
+    name = model.required<string>();        // Setting a property that is required
+    age = model(27);
+    <app-person [age]="age" />              // Lets us pass the age property to the PersonComponent as an input()
+    <app-person [(age)]="age" />            // Two-way: This one lets us pass age as both an input() and output()
+
+    <button (click)="name.set('Harry')">
+      Change Name
+    </button>
+    <button (click)="increaseAge()">
+      Increase Age
+    </button>
+
+    increaseAge(): void {
+      this.age.update(() => age + 1);
+    }
     ```
 
 ### [RxJs and Signals interoperability](https://www.angulartraining.com/daily-newsletter/rxjs-and-signals-interoperability/)
@@ -109,23 +177,83 @@ Contents:
   - Closing sockets
   - Cancelling `setInterval()` or `setTimeout()` tasks
  
-## Other Topics
+## Other Topics 
 
-### [Signal-based equivalents of query decorators](https://www.angulartraining.com/daily-newsletter/viewchild-and-contentchild-for-signal-based-queries/)
-- `viewChild()` - a way to get a reference on an HTML element in the current components template. Giving you access to a child component, and its public properties, within the TypeScript space
+### [ng-template](https://blog.angulartraining.com/what-is-ng-template-and-when-to-use-it-f875b46aa078)
+- Under the hood, Angular uses `ng-template` a lot. Like in how it translates `*ngIf` or `*ngFor`
+  - `*ngFor` and `*ngIf` were created to be shorthand for the original syntax which uses `ng-template` with params
+- `ng-template` are:
+  - By default, invisible in the DOM - the block has to be activated by other code
+  - Can render any sibling elements without creating additional “wrapper” parent elements - doesn't create additional DOM elements
+- Sample usage for when we need to display info based on a condition. Results in a non-intrusive block that doesn't mess up layout or CSS 
   - ```
-    listComponent: Signal<ListComponent | undefined> = viewChild(ListComponent);
-    this.listComponent().items = "";                                               // Sample usage, accessing the `items` property in ListComponent
+    <ng-template [ngIf]="user.isLoggedIn">
+      <div>
+        Welcome to our app, {{userName}}!
+      </div>
+      <menu>
+        Here are your options for today: 
+       ...
+      </menu>
+    </ng-template>
     ```
-- `contentChild()` - looks for an element projected by the parent component into the ng-content element of the current component using [content projection](https://www.angulartraining.com/daily-newsletter/passing-custom-content-to-a-component-with-content-projection/).
-  - Can be thought of as being able to look for an element either directly in the current component's template, but also in the template of any child components in the current template. Like the template of the child projects its contents to the template of the current component.
-  - `infoContent = contentChild<ElementRef>('test');`
-- Can make use of `required` to get rid of undefined values
+- Another, more advanced, sample usage is for passing a template to another component
+  - Helpful for when the number of templates is variable
   - ```
-    listComponent = viewChild.required(ListComponent);
-    length = computed(() => this.listComponent().items.length);
+    <ng-template #userInfo>
+      <div>
+        Welcome to our app, {{userName}}!
+      </div>
+      <menu>
+        Here are your options for today: 
+       ...
+      </menu>
+    </ng-template>
+
+    <welcome-page [userTemplate]="userInfo" >
+    </welcome-page>
     ```
 
-### Signal-based functions for [inputs](https://www.angulartraining.com/daily-newsletter/whats-new-in-angular-17-1/), [outputs](https://angular.dev/api/core/output?tab=usage-notes), and [model](https://www.angulartraining.com/daily-newsletter/model-for-signal-based-2-way-data-bindings/)
-- Inputs
-  - 
+### [ng-container](https://www.angulartraining.com/daily-newsletter/what-is-ng-container/)
+- Similar to `ng-template`, you can use `*ngIf` or `*ngFor` on them
+  - `<ng-container *ngFor="let item of items">`
+- Rendering doesn't create additional DOM elements
+- Perfect usage for this is when you need to use both `*ngIf` and `*ngFor`, since you can't use both at the same time on the same element
+  - ```
+    <ng-container *ngFor="let item of items">
+      <li *ngIf="item.isValid">
+        {{ item.name }}
+      </li>
+    </ng-container>
+    ```
+
+### [Standalone Components](https://www.angulartraining.com/daily-newsletter/what-are-standalone-components/)
+- Covered in [Chapter 1](https://www.angulartraining.com/daily-newsletter/what-are-standalone-components/)
+
+## Quiz 4
+### The following syntax does not compile:
+```
+<div *ngIf="showItems" *ngFor="let item of items">{{item}}</div>
+
+Which alternative syntax would generate the exact same DOM structure as intended above?
+```
+1. ```
+   <ng-container *ngIf="showItems">
+     <div *ngFor="let item of items">{{item}}</div>
+   </ng-container>
+   ```
+2. ```
+   <div [hidden]="! showItems" *ngFor="let item of items">{{item}}</div>
+   ```
+3. ```
+   <div *ngIf="showItems">
+     <span *ngFor="let item of items">{{item}}</span>
+   </div>
+   ```
+4. ```
+   <ng-template *ngIf="showItems">
+     <div *ngFor="let item of items">{{item}}</div>
+   </ng-template>
+   ```
+
+    
