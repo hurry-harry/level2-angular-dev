@@ -325,7 +325,7 @@ Contents:
   3. trackBy
   4. count
 - Which of the following options is not a valid Angular selector?
-  1. [header]:not(div)
+  1. \[header]:not(div)
   2. app-header
   3. .header
   4. ng-header
