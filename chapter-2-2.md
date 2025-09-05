@@ -1,6 +1,11 @@
 # Chapter 2.2 - Challenge: Create a Component Driven by Inputs
 Associated files are located in the `files/Chapter-2-2` folder
+- Initial files
+- Solution by Harry
+- Solution provided
+  
 ## Create a component for movie items that receive `Movie` information from inputs.
+
 ### Requirements
 - Add a required input of type `Movie`
   - There's a sample movie in `src/app.component.ts`
