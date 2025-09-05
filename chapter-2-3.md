@@ -1,8 +1,9 @@
 # Chapter 2.3: Signals - Lifecycle Hooks - Other tips
 Contents:
-- Signals
-- Lifecycle Hooks
-- Other Tips
+- [Signals](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-3.md#signals)
+- [Lifecycle Hooks](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-3.md#lifecycle-hooks)
+- [Other Tips](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-3.md#other-tips)
+- [Quiz 4](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-3.md#quiz-4)
   
 ## Signals - A new way to handle data
 - Easier to learn than RxJs, lightweight, and they enable a new type of change detection
@@ -231,29 +232,45 @@ Contents:
 - Covered in [Chapter 1](https://www.angulartraining.com/daily-newsletter/what-are-standalone-components/)
 
 ## Quiz 4
-### The following syntax does not compile:
-```
-<div *ngIf="showItems" *ngFor="let item of items">{{item}}</div>
-
-Which alternative syntax would generate the exact same DOM structure as intended above?
-```
-1. ```
-   <ng-container *ngIf="showItems">
-     <div *ngFor="let item of items">{{item}}</div>
-   </ng-container>
-   ```
-2. ```
-   <div [hidden]="! showItems" *ngFor="let item of items">{{item}}</div>
-   ```
-3. ```
-   <div *ngIf="showItems">
-     <span *ngFor="let item of items">{{item}}</span>
-   </div>
-   ```
-4. ```
-   <ng-template *ngIf="showItems">
-     <div *ngFor="let item of items">{{item}}</div>
-   </ng-template>
-   ```
+- The following syntax does not compile: Which alternative syntax would generate the correct DOM structure as intended below?
+  ```
+  <div *ngIf="showItems" *ngFor="let item of items">{{item}}</div>
+  ```
+  1. ```
+     <ng-container *ngIf="showItems">
+       <div *ngFor="let item of items">{{item}}</div>
+     </ng-container>
+     ```
+  2. ```
+     <div [hidden]="! showItems" *ngFor="let item of items">{{item}}</div>
+     ```
+  3. ```
+     <div *ngIf="showItems">
+       <span *ngFor="let item of items">{{item}}</span>
+     </div>
+     ```
+  4. ```
+     <ng-template *ngIf="showItems">
+       <div *ngFor="let item of items">{{item}}</div>
+     </ng-template>
+     ```
+- What is the purpose of the ViewChild decorator in this component example?
+  ```
+  @Component({
+    template: '<p #test></p>'
+  })
+  export class UserDetailsComponent {
+    @ViewChild('test') test;
+  }
+  ```
+  1. It indicates that the tag be rendered as a child of the parent view that uses this component.
+  2. It makes the tag in the template support content projection.
+  3. It provides access from within the component class to the ElementRef object for the tag that has the test template reference variable.
+  4. It makes the tag visible in the final render. If @ViewChild was not used in the class, then Angular would automatically hide the tag that has #test on it.
+- Which of the following functions is not a part of the Signals API?
+  1. computed()
+  2. observable()
+  3. signal()
+  4. effect()
 
     
