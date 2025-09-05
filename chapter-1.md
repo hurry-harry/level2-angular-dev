@@ -5,7 +5,7 @@ Contents:
 - [Conventions and Style Guide](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-1.md#conventions-and-style-guide)
 - [Quiz 1](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-1.md#quiz-1)
 - [Features of the Framework](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-1.md#features-of-the-framework)
-- [Angular Modules and Standalone](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-1.md#angular-modules-and-standalone)
+- [Angular Modules and Standalone Components](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-1.md#angular-modules-and-standalone-components)
 - [Quiz 2](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-1.md#quiz-2)
   
 ## What’s the difference between Angular JS and Angular?
