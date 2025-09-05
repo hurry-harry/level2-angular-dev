@@ -1,4 +1,4 @@
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/5a72a9aa-4091-4f41-b221-ef5a55932c7b" /><img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/ad3b89e5-84d3-4444-8997-f89cb6e364f6" /># Chapter 2.3: Signals - Lifecycle Hooks - Other tips
+# Chapter 2.3: Signals - Lifecycle Hooks - Other tips
 Contents:
 - Signals
 - Lifecycle Hooks
