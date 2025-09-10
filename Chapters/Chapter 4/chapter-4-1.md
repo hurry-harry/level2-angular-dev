@@ -1,7 +1,6 @@
 # Chapter 4.1: Directives
 Contents:
 - [Basics of Directives](https://github.com/hurry-harry/level2-angular-dev/blob/main/Chapters/Chapter%204/chapter-4-1.md#basics-of-directives)
-- [Custom Directives and Advanced Usage]()
 
 ## Basics of Directives
 - **NOTE:** Very recommended to use the new `@if` control flow block instead on modern Angular projects
@@ -242,6 +241,190 @@ Content:
     showList = true;
     items = [{ id: 1, title: 'Item' }];
     user: User | null = null;
+    
+    trackFn(index: number, item: any) {
+      return item.id;
+    }
+  }
+  ```
+
+### [Attribute Directives](https://angular.dev/guide/directives/attribute-directives)
+- ElementRef Injection
+  - Use `inject(ElementRef)` to access the host DOM element via nativeElement property.
+  - This allows direct manipulation of element styles, attributes, and properties.
+  - Essential for DOM-based attribute directives.
+- HostListener Decorator
+  - Use `@HostListener('eventName')` to listen to DOM events on the host element.
+  - Supports mouse events, keyboard events, and custom events.
+  - Handlers can access event objects and modify element behavior dynamically.
+- Input Properties
+  - Use `input()` function for property binding with default values.
+  - Supports both static and dynamic binding syntax.
+  - Multiple inputs can be combined with fallback logic for flexible configuration.
+- NgNonBindable
+  - Apply `ngNonBindable` to prevent Angular from evaluating expressions, directives, and bindings on child elements.
+  - Useful for displaying raw template syntax or preventing unwanted processing.
+  - Directives on the element itself still work.
+- Directive Composition
+  - Multiple attribute directives can be applied to the same element.
+  - Use `input()` with fallback chains for robust configuration.
+  - Combine with `@HostListener` for interactive behavior and `ElementRef` for DOM manipulation.
+- ```
+  // Advanced attribute directive with multiple inputs and event handling
+  @Directive({
+    selector: '[appAdvancedHighlight]'
+  })
+  export class AdvancedHighlightDirective {
+    private el = inject(ElementRef);
+    
+    // Input properties with fallback logic
+    highlightColor = input('yellow');
+    defaultColor = input('red');
+    disabled = input(false);
+    
+    // Host event listeners
+    @HostListener('mouseenter') onMouseEnter() {
+      if (!this.disabled()) {
+        this.highlight(this.highlightColor() || this.defaultColor() || 'red');
+      }
+    }
+    
+    @HostListener('mouseleave') onMouseLeave() {
+      this.highlight('');
+    }
+    
+    @HostListener('click', ['$event']) onClick(event: MouseEvent) {
+      console.log('Element clicked:', event.target);
+    }
+    
+    private highlight(color: string) {
+      this.el.nativeElement.style.backgroundColor = color;
+    }
+  }
+  ---------------------------------------------------------
+
+  // Directive with ngNonBindable usage
+  @Component({
+    template: `
+      <!-- Multiple attribute directives on same element -->
+      <div [appAdvancedHighlight]="selectedColor" 
+           defaultColor="violet"
+           [disabled]="isDisabled"
+           class="interactive-element">
+        Hover me!
+      </div>
+      
+      <!-- NgNonBindable prevents expression evaluation -->
+      <div ngNonBindable [appAdvancedHighlight]="'blue'">
+        This won't evaluate: {{ 1 + 1 }}
+        But directive still works!
+      </div>
+      
+      <!-- Static vs dynamic binding -->
+      <p appAdvancedHighlight="green">Static color</p>
+      <p [appAdvancedHighlight]="dynamicColor">Dynamic color</p>
+    `
+  })
+  export class ExampleComponent {
+    selectedColor = 'orange';
+    isDisabled = false;
+    dynamicColor = 'purple';
+  }
+  ```
+
+### [Common Angular Directives](https://angular.dev/guide/directives#built-in-attribute-directives)
+- NgClass
+  - Use `[ngClass]` to dynamically add/remove multiple CSS classes. Accepts objects, arrays, or strings.
+  - For single classes, prefer class binding `[class.name]="condition"` over `NgClass` for better performance.
+- NgStyle
+  - Use `[ngStyle]` to dynamically set inline styles.
+  - Accepts objects with CSS property-value pairs.
+  - Use camelCase for CSS properties (e.g., `fontSize` instead of `font-size`).
+  - Prefer CSS classes when possible for better maintainability.
+- NgModel
+  - Use `[(ngModel)]` for two-way binding or separate `[ngModel]` and `(ngModelChange)` for more control.
+  - Provides two-way data binding for form elements.
+  - Requires `FormsModule` import.
+  - Works with `input`, `select`, and `textarea` elements.
+- NgContainer
+  - Use `<ng-container>` to group elements without adding extra DOM nodes.
+  - Essential for applying multiple structural directives or when you need conditional logic without wrapper elements.
+  - Particularly useful with `*ngFor` and `*ngIf` combinations.
+- Directive Import
+  - All built-in directives must be imported in the component's `imports` array.
+  - Use specific imports like `NgClass`, `NgStyle`, `NgIf`, `NgFor` from `@angular/common` or `NgModel` from `@angular/forms` for standalone components.
+- ```
+  // Component with built-in directives
+  @Component({
+    imports: [NgClass, NgStyle, NgIf, NgFor, NgModel, FormsModule],
+    template: `
+      <!-- NgClass: Multiple classes dynamically -->
+      <div [ngClass]="{
+        'active': isActive,
+        'disabled': isDisabled,
+        'highlight': isSpecial
+      }">
+        Dynamic classes
+      </div>
+      
+      <!-- NgStyle: Inline styles -->
+      <div [ngStyle]="{
+        'font-size': fontSize + 'px',
+        'color': textColor,
+        'font-weight': isBold ? 'bold' : 'normal'
+      }">
+        Dynamic styles
+      </div>
+      
+      <!-- NgModel: Two-way binding -->
+      <input [(ngModel)]="userName" placeholder="Enter name">
+      <p>Hello, {{ userName }}!</p>
+      
+      <!-- NgContainer: Group without extra DOM -->
+      <ng-container *ngIf="showList">
+        <div *ngFor="let item of items; trackBy: trackFn" 
+             [class.selected]="item.selected">
+          {{ item.name }}
+        </div>
+      </ng-container>
+      
+      <!-- Conditional form with ng-container -->
+      <form>
+        <ng-container *ngFor="let field of formFields">
+          <ng-container *ngIf="field.visible">
+            <input [(ngModel)]="field.value" 
+                   [placeholder]="field.placeholder"
+                   [ngClass]="{'error': field.hasError}">
+          </ng-container>
+        </ng-container>
+      </form>
+    `
+  })
+  export class DirectivesExampleComponent {
+    // NgClass properties
+    isActive = true;
+    isDisabled = false;
+    isSpecial = true;
+    
+    // NgStyle properties
+    fontSize = 16;
+    textColor = 'blue';
+    isBold = false;
+    
+    // NgModel property
+    userName = '';
+    
+    // NgFor data
+    showList = true;
+    items = [
+      { id: 1, name: 'Item 1', selected: false },
+      { id: 2, name: 'Item 2', selected: true }
+    ];
+    
+    formFields = [
+      { visible: true, value: '', placeholder: 'Name', hasError: false },
+      { visible: false, value: '', placeholder: 'Email', hasError: true }
+    ];
     
     trackFn(index: number, item: any) {
       return item.id;
