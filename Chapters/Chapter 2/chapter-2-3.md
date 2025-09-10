@@ -1,9 +1,9 @@
 # Chapter 2.3: Signals - Lifecycle Hooks - Other tips
 Contents:
-- [Signals](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-3.md#signals)
-- [Lifecycle Hooks](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-3.md#lifecycle-hooks)
-- [Other Tips](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-3.md#other-topics)
-- [Quiz 4](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-3.md#quiz-4)
+- [Signals](https://github.com/hurry-harry/level2-angular-dev/blob/main/Chapters/Chapter%202/chapter-2-3.md#signals)
+- [Lifecycle Hooks](https://github.com/hurry-harry/level2-angular-dev/blob/main/Chapters/Chapter%202/chapter-2-3.md#lifecycle-hooks)
+- [Other Tips](https://github.com/hurry-harry/level2-angular-dev/blob/main/Chapters/Chapter%202/chapter-2-3.md#other-topics)
+- [Quiz 4](https://github.com/hurry-harry/level2-angular-dev/blob/main/Chapters/Chapter%202/chapter-2-3.md#quiz-4)
   
 ## Signals
 - A new way to handle data
