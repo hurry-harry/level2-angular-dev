@@ -1,6 +1,6 @@
 # Chapter 4.1: Directives
 Contents:
-- [Basics of Directives]()
+- [Basics of Directives](https://github.com/hurry-harry/level2-angular-dev/blob/main/Chapters/Chapter%204/chapter-4-1.md#basics-of-directives)
 - [Custom Directives and Advanced Usage]()
 
 ## Basics of Directives
