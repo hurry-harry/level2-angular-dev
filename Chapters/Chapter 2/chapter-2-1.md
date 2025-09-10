@@ -1,9 +1,9 @@
 # Chapter 2.1: Angular Components - Selectors and Decorators - Expressions and Bindings - Control Flow
 Contents:
-- [Component Selector and Decorator](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-1.md#component-selector-and-decorator)
-- [Expressions and Data Bindings](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-1.md#expressions-and-data-bindings)
-- [Control Flow with Blocks](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-1.md#control-flow-with-blocks)
-- [Quiz 3](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-2-1.md#quiz-3)
+- [Component Selector and Decorator](https://github.com/hurry-harry/level2-angular-dev/blob/main/Chapters/Chapter%202/chapter-2-1.md#component-selector-and-decorator)
+- [Expressions and Data Bindings](https://github.com/hurry-harry/level2-angular-dev/blob/main/Chapters/Chapter%202/chapter-2-1.md#expressions-and-data-bindings)
+- [Control Flow with Blocks](https://github.com/hurry-harry/level2-angular-dev/blob/main/Chapters/Chapter%202/chapter-2-1.md#control-flow-with-blocks)
+- [Quiz 3](https://github.com/hurry-harry/level2-angular-dev/blob/main/Chapters/Chapter%202/chapter-2-1.md#quiz-3)
 
 ## Component Selector and Decorators
 - Angular uses selectors to know when to render a specific component
