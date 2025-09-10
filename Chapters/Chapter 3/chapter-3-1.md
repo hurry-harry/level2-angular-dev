@@ -1,6 +1,6 @@
 # Chapter 3.1 - JavaScript
 Contents:
-- [JavaScript](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-3-1.md#javascript)
+- [JavaScript](https://github.com/hurry-harry/level2-angular-dev/blob/main/Chapters/Chapter%203/chapter-3-1.md#javascript)
 
 ## JavaScript
 
