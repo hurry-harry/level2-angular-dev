@@ -1,6 +1,6 @@
 # Chapter 3.2 - TypeScript
 Contents:
-- [TypeScript](https://github.com/hurry-harry/level2-angular-dev/blob/main/chapter-3-2.md#typescript)
+- [TypeScript](https://github.com/hurry-harry/level2-angular-dev/blob/main/Chapters/Chapter%203/chapter-3-2.md#typescript)
 
 ## TypeScript (TS)
 
