@@ -6,7 +6,7 @@ Contents:
 - Provider configuration options
 
 ## Basics of Dependency Injection
-- Allows classes with Angular decorators, such as Components, Directives, Pipes, and Injectables, to configure dependencies that they need.
+- Allows classes with Angular decorators, such as Components, Directives, Pipes, Services, and Injectables, to configure dependencies that they need.
 
 ### [How to provide a dependency](https://angular.dev/guide/di/dependency-injection#providing-a-dependency)
 - Make sure the class for `YourService` has the `@Injectable()` decorator to allow it to be injected to other components
