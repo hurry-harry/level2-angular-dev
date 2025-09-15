@@ -17,6 +17,8 @@ Associated files are located in the `files/Chapter-5-4` folder
 - Add `inputs/outputs` to `movie-item.component.ts` to pass the information when a movie is a favorite, as well as `emit` an event when the "star" icon is clicked.
 - Use the active CSS class to turn the ☆ icon into ⭐. Remove that class to do the opposite.
 - Update `app.component.ts` to handle the interactions with `favorites.service.ts` and pass the favorite information to `movie-item.component.ts`.
+- **NOTE:** Remember to try and use inputs/outputs to avoid injecting services in too many components.
+  - This concept is also known as [Presentation and Container Components](https://www.angulartraining.com/daily-newsletter/container-vs-presentation-components/)
 
 ## Sample Output
 ![chapter51-screenshot](https://github.com/user-attachments/assets/c82fcf81-6d78-4a82-a1eb-6cb68917dd92)
